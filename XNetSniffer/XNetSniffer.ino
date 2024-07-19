@@ -474,7 +474,7 @@ bool response = false;
                         sprintf(line+linePos,"Invalid lib entry"); 
                         break;
                     }
-
+ 		    break;
                 default: // Invalid
                     sprintf(line+linePos,"Invalid 0x%02X 0x%02X at line %d",(int)cData[HEADER],(int)cData[HEADER+1],__LINE__);
                     break;

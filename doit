@@ -2,7 +2,7 @@
 sudo rm -rf dist/XNetSniffer/XNetSniffer*
 arduino-cli-compile .
 python3 -I ./espota.py \
-  -i 192.168.178.124 \
+  -i 192.168.178.140 \
   --auth=admin \
   -p 8266 \
   -d -r \
