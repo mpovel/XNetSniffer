@@ -476,7 +476,7 @@ bool response = false;
                     }
 
                 default: // Invalid
-                    sprintf(line+linePos,"Invalid 0x%02X 0x%02X",(int)cData[HEADER],(int)cData[HEADER+1]);
+                    sprintf(line+linePos,"Invalid 0x%02X 0x%02X at line %d",(int)cData[HEADER],(int)cData[HEADER+1],__LINE__);
                     break;
             }
             break;
@@ -485,7 +485,7 @@ bool response = false;
                 case 0x00:
                     break;
                 default: // Invalid
-                    sprintf(line+linePos,"Invalid 0x%02X 0x%02X",(int)cData[HEADER],(int)cData[HEADER+1]);
+                    sprintf(line+linePos,"Invalid 0x%02X 0x%02X at line %d",(int)cData[HEADER],(int)cData[HEADER+1],__LINE__);
                     break;
             }
             break;
