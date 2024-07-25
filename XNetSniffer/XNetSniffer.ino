@@ -251,7 +251,7 @@ bool response = false;
                     break; 
                 case 0x80:
                     sprintf(line+linePos,"Communication Error");
-                    syslog.printf(FAC_LOCAL7, PRI_ERROR, (char*)"XN: %s",DumpData(Buffer[aktRec].cData,Buffer[aktRec].iTelegramLength));
+                    // syslog.printf(FAC_LOCAL7, PRI_ERROR, (char*)"XN: %s",DumpData(Buffer[aktRec].cData,Buffer[aktRec].iTelegramLength));
                     break; 
                 case 0x81:
                     sprintf(line+linePos,"Busy Control Station");
