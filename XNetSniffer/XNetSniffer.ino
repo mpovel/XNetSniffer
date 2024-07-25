@@ -63,6 +63,8 @@ bool response = false;
                 }
             } else if (0x43 == cData[HEADER]){
                 linePos += sprintf(line+linePos,"BC Feedback > 1024 Addr: %d %d",(int)(cData[2]<<8+cData[3]),(int)cData[4]);
+            } else {
+                sprintf(line+linePos,"Invalid 0x%02X 0x%02X at line %d",(int)cData[HEADER],(int)cData[HEADER+1],__LINE__);
             }
             break;
         case 0x60:
@@ -76,6 +78,8 @@ bool response = false;
                     linePos += sprintf(line+linePos,"BC All Loco Off");
                 } else if (0x61==cData[HEADER]){
                     linePos += sprintf(line+linePos,"BC Programming Mode");
+                } else {
+                    sprintf(line+linePos,"Invalid 0x%02X 0x%02X at line %d",(int)cData[HEADER],(int)cData[HEADER+1],__LINE__);
                 }
             break;
 
@@ -88,7 +92,6 @@ bool response = false;
             case 0x20:
                 // TBD
                 syslog.printf(FAC_LOCAL7, PRI_ERROR, (char*)"XN: %s",DumpData(Buffer[aktRec].cData,Buffer[aktRec].iTelegramLength));
-
                 linePos = sprintf(line,"TBD    ");
                 break;
             case 0x40:
@@ -103,7 +106,6 @@ bool response = false;
                 linePos = sprintf(line,"RES %2d ",iAdr);
                 response = true;
                 }
-
                 break;        
         }
 
@@ -277,7 +279,7 @@ bool response = false;
                         sprintf(line+linePos,"Unknown command");
                         break; 
                     default:
-                        sprintf(line+linePos,"Invalid 0x%02X 0x%02X",(int)cData[HEADER],(int)cData[HEADER+1]);
+                        sprintf(line+linePos,"Invalid 0x%02X 0x%02X at line %d",(int)cData[HEADER],(int)cData[HEADER+1],__LINE__);
                         break;
                 }
                 break;
@@ -488,6 +490,7 @@ bool response = false;
             case 0xF0:
                 switch (cData[HEADER+1]){
                     case 0x00:
+                        sprintf(line+linePos,"Invalid 0x%02X 0x%02X at line %d",(int)cData[HEADER],(int)cData[HEADER+1],__LINE__);
                         break;
                     default: // Invalid
                         sprintf(line+linePos,"Invalid 0x%02X 0x%02X at line %d",(int)cData[HEADER],(int)cData[HEADER+1],__LINE__);
