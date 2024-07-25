@@ -59,7 +59,7 @@ bool response = false;
             if (0x40==(cData[HEADER] & 0xF0)){
                 linePos += sprintf(line+linePos,"BC Feedback ");
                 for (int cnt=0; cnt < iLength;cnt++){
-                    linePos += sprintf(line+linePos,"%03d:%03d",(int)(cData[cnt*2+2]),(int)cData[cnt*2+3]);
+                    linePos += sprintf(line+linePos,"%03d:%03d ",(int)(cData[cnt*2+2]),(int)cData[cnt*2+3]);
                 }
             } else if (0x43 == cData[HEADER]){
                 linePos += sprintf(line+linePos,"BC Feedback > 1024 Addr: %d %d",(int)(cData[2]<<8+cData[3]),(int)cData[4]);
