@@ -79,7 +79,20 @@ bool response = false;
                 } else if (0x61==cData[HEADER]){
                     linePos += sprintf(line+linePos,"BC Programming Mode");
                 } else {
-                    sprintf(line+linePos,"Invalid 0x%02X 0x%02X at line %d",(int)cData[HEADER],(int)cData[HEADER+1],__LINE__);
+                    switch (cData[HEADER+1]){
+                        case 0x01: // Timecode transfer, accelerated layout time
+                            sprintf(line+linePos,"Timecode transfer");
+                            break;
+                        case 0xF1: // DCC FAST CLOCK set request.
+                            sprintf(line+linePos,"Fast clock set");
+                            break;
+                        case 0xF2: // DCC FAST CLOCK get request.
+                            sprintf(line+linePos,"Fast clock get");
+                            break;
+                        default:
+                            sprintf(line+linePos,"Invalid 0x%02X 0x%02X at line %d",(int)cData[HEADER],(int)cData[HEADER+1],__LINE__);
+                            break;
+                    }
                 }
             break;
 
