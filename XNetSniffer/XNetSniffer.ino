@@ -54,6 +54,8 @@ uint8 iLength = (cData[HEADER] & 0x0F) + 3; // XOR, Header and Callbye not coded
 uint8 linePos = 4;
 bool response = false;
 
+    switch (cData[CALL_BYTE]){
+    default: 
     switch (cData[CALL_BYTE] & 0x60){
         case 0x00:
             // Response
@@ -489,6 +491,8 @@ bool response = false;
                     break;
             }
             break;
+    }
+    break;
     }
     return line;
 }
